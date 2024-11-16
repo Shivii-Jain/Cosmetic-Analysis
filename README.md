@@ -1,31 +1,23 @@
 # Cosmetic Product Analysis Web Application
 This web application allows users to explore and analyze cosmetic products using various techniques such as T-SNE visualization, ingredient frequency analysis, and skin-type-based product recommendations. The app is built using Streamlit, a Python framework for creating interactive web applications, and incorporates various data analysis and visualization libraries like Pandas, Scikit-learn, Matplotlib, and Bokeh.
-How to Run the Application Locally
-To run this application on your local machine, follow these steps:
 
-Clone this repository:
+## How It Works
 
-bash
-Copy code
-git clone https://github.com/yourusername/cosmetic-product-analysis.git
-Navigate to the project directory:
+# Dataset Loading
+The cosmetic products data is loaded into the application using Pandas' read_csv function. The dataset is cached for faster access using Streamlit's @st.cache_data decorator.
 
-bash
-Copy code
-cd cosmetic-product-analysis
-Install the required dependencies:
+# T-SNE Visualization
+For the T-SNE plot, products are first filtered to include only moisturizers suitable for dry skin. The ingredients of these products are tokenized and one-hot encoded into a matrix. This matrix is then passed into the t-SNE algorithm for dimensionality reduction to plot the products in a 2D space.
 
-Copy code
-pip install -r requirements.txt
-Download the dataset cosmetics.csv and place it in the project directory. The dataset should contain information about various cosmetic products, including columns like Name, Brand, Price, Rank, Ingredients, and skin type suitability (Dry, Oily, Sensitive).
+Each product is represented by a circle on the plot, and additional information (like name, brand, price, and rank) is displayed when hovering over the product on the plot.
 
-Run the application using the Streamlit command:
+# Ingredient Frequency Analysis
+The application analyzes the frequency of each ingredient across all products in the dataset. It then displays a bar chart showing the 10 most common ingredients in the dataset, providing users with an overview of the most popular ingredients in cosmetics.
 
-arduino
-Copy code
-streamlit run app.py
-Open a browser and go to the following URL:
+# Skin Type-Based Recommendations
+Based on the selected skin type (Dry, Oily, or Sensitive), the app filters products that are suitable for that skin type. The filtered products are displayed in a table for users to explore.
 
-arduino
-Copy code
-http://localhost:8501
+# Files in the Repository
+app.py: The main application file containing the code for the Streamlit app.
+cosmetics.csv: The dataset file containing cosmetic product details such as name, brand, price, rank, ingredients, and skin type suitability.
+requirements.txt: A file listing the required Python libraries for the application.
